@@ -27,6 +27,13 @@
                 {{ Form::label('slug', 'Slug:') }}
                 {{ Form::text('slug', null, ['class' => 'form-control', 'required' => '', 'minlength' => '5', 'maxlength' => '255']) }}
 
+                {{ Form::label('category', 'Category:') }}
+                <select name="category_id" class="form-control">
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                </select>
+            
                 {{ Form::label('body', 'Post Body:') }}
                 {{ Form::textarea('body', null, ['class' => 'form-control', 'required' => '', 'data-parsley-required-message' => "Body cannot be empty"]) }}
 
