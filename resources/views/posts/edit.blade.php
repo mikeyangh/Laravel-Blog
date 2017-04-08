@@ -2,6 +2,10 @@
 
 @section('title', ' | Edit Post')
 
+@section('stylesheets')
+    {!! Html::style('https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css') !!}
+@endsection
+
 @section('content')
 
     <div class="row">
@@ -15,6 +19,13 @@
 
             {{ Form::label('category_id', 'Category:', ['class' => 'form-spacing-top']) }}
             {{ Form::select('category_id', $map, null, ['class' => 'form-control']) }}
+
+            {{ Form::label('tags', 'Tags:') }}
+            <select name="tags[]" class="form-control select2-multi" multiple="multiple">
+                @foreach($tags as $tag)
+                    <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                @endforeach
+            </select>
 
             {{ Form::label('body', 'Body:', ['class' => 'form-spacing-top']) }}
             {{ Form::textarea('body', null, ['class' => 'form-control']) }}
@@ -55,4 +66,15 @@
         {!! Form::close() !!}
     </div>
 
+@endsection
+
+@section('scripts')
+    {!! Html::script('https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js') !!}
+    <script type="text/javascript">
+
+        $('.select2-multi').select2();
+
+        $('.select2-multi').select2().val({!! json_encode($post->tags()->getRelatedIds()) !!}).trigger('change');
+
+    </script>
 @endsection

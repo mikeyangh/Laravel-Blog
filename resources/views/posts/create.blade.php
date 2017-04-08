@@ -4,6 +4,7 @@
 
 @section('stylesheets')
     {!! Html::style('css/parsley.css') !!}
+    {!! Html::style('https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css') !!}
 @endsection
 
 @section('nav_bar')
@@ -33,6 +34,13 @@
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
                 </select>
+
+                {{ Form::label('tags', 'Tags:') }}
+                <select name="tags[]" class="form-control select2-multi" multiple="multiple">
+                    @foreach($tags as $tag)
+                        <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                    @endforeach
+                </select>
             
                 {{ Form::label('body', 'Post Body:') }}
                 {{ Form::textarea('body', null, ['class' => 'form-control', 'required' => '', 'data-parsley-required-message' => "Body cannot be empty"]) }}
@@ -48,4 +56,9 @@
 @section('scripts')
     {!! Html::script('js/parsley.min.js') !!}
     {!! Html::script('js/validate.js') !!}
+    {!! Html::script('https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js') !!}
+
+    <script>
+        $('.select2-multi').select2();
+    </script>
 @endsection
