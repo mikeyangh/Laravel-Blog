@@ -7,8 +7,9 @@
 
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <img src="{{ asset('images/' . $post->image) }}" alt="">
-
+            @if(isset($post->image))
+                <img src="{{ asset('images/' . $post->image) }}" alt="The photo for of this post">
+            @endif
             <h1>{{ $post->title }}</h1>
             <p>{!! $post->body !!}</p>
             <hr>
