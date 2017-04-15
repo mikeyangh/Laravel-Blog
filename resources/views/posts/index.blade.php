@@ -38,10 +38,10 @@
                             <td>{{ $post->title }}</td>
                             <td>
 
-                                @if(strlen($post->body) > 50)
-                                    {{ substr($post->body, 0, 50) . '...' }}
+                                @if(strlen(strip_tags($post->body)) > 50)
+                                    {{ substr(strip_tags($post->body), 0, 50) . '...' }}
                                 @else
-                                    {{ $post->body }}
+                                    {{ strip_tags($post->body) }}
                                 @endif
                             </td>
                             <td>{{ date('M-d-Y, H:i', strtotime($post->created_at)) }}</td>

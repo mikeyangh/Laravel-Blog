@@ -4,6 +4,17 @@
 
 @section('stylesheets')
     {!! Html::style('https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css') !!}
+
+    <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=5s0y8rloo5to7iabxx06kr27x6df5xrh1gaj3na1yfx3dntj"></script>
+
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'link code',
+            menubar: false
+        });
+    </script>
+
 @endsection
 
 @section('content')

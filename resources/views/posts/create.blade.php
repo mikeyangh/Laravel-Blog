@@ -5,6 +5,16 @@
 @section('stylesheets')
     {!! Html::style('css/parsley.css') !!}
     {!! Html::style('https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css') !!}
+    <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=5s0y8rloo5to7iabxx06kr27x6df5xrh1gaj3na1yfx3dntj"></script>
+
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'link code',
+            menubar: false
+        });
+    </script>
+
 @endsection
 
 @section('nav_bar')
@@ -43,7 +53,8 @@
                 </select>
             
                 {{ Form::label('body', 'Post Body:') }}
-                {{ Form::textarea('body', null, ['class' => 'form-control', 'required' => '', 'data-parsley-required-message' => "Body cannot be empty"]) }}
+                {{--{{ Form::textarea('body', null, ['class' => 'form-control', 'required' => '', 'data-parsley-required-message' => "Body cannot be empty"]) }}--}}
+                {{ Form::textarea('body', null, ['class' => 'form-control']) }}
 
                 {{ Form::submit('Create Post',
                 ['class' => 'btn btn-success btn-lg btn-block', 'style' => 'margin-top: 20px;']) }}
