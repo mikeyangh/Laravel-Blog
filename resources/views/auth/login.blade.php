@@ -20,7 +20,10 @@
             <br>
             {{ Form::submit('Login', ['class' => 'btn btn-primary btn-block']) }}
 
-            <p><a href="{{ url('password/reset') }}">Forgot My Password</a></p>
+            <p>
+                <span style="float: left"><a href="{{ url('password/reset') }}">Forgot My Password</a></span>
+                <span style="float: right"><a href="{{ url('auth/register') }}">New User?</a></span>
+            </p>
 
             {!! Form::close() !!}
         </div>
