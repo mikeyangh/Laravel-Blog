@@ -31,12 +31,14 @@
         <div class="col-md-8 col-md-offset-2" >
             <h1>Create New Post</h1>
             <hr>
+            <?php $slug = null; ?>
             {!! Form::open(['route' => 'posts.store', 'data-parsley-validate' => '', 'files' => true]) !!}
                 {{ Form::label('title', 'Title:') }}
                 {{ Form::text('title', null, ['class' => 'form-control', 'required' => '', 'maxlength' => '50', 'data-parsley-required-message' => "Title cannot be empty"]) }}
 
                 {{ Form::label('slug', 'Slug:') }}
-                {{ Form::text('slug', null, ['class' => 'form-control', 'required' => '', 'minlength' => '5', 'maxlength' => '255']) }}
+                <a id="slug-generator" class="glyphicon glyphicon-refresh btn btn-xs" title="Generate a new random slug"></a>
+                {{ Form::text('slug', $slug, ['class' => 'form-control', 'id' => 'slug-input','required' => '', 'minlength' => '5', 'maxlength' => '255']) }}
 
                 {{ Form::label('category', 'Category:') }}
                 <select name="category_id" class="form-control">
@@ -68,11 +70,17 @@
 @endsection
 
 @section('scripts')
+    {!! Html::script('js/util.js') !!}
     {!! Html::script('js/parsley.min.js') !!}
     {!! Html::script('js/validate.js') !!}
     {!! Html::script('https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js') !!}
 
     <script>
+        $("#slug-generator").click(function(){
+            console.log('!!!');
+           $("#slug-input").val(generateRandomStr(10));
+        });
+
         $('.select2-multi').select2();
     </script>
 @endsection
